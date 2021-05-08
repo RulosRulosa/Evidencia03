@@ -1,30 +1,22 @@
 import java.util.Scanner;
 
 public class VendedorSopapipillas {
-    private int sopaipillas; //cantidad de sopaipillas
-    private int dinero; //para dar de vuelto y por lo que recibe
+
+
     private String aderezo;
     private int vuelto;
+    private int cobro;
 
-    public VendedorSopapipillas(int dinero, String aderezo) {
-        this.dinero = dinero;
-        this.aderezo = aderezo;
+    public VendedorSopapipillas() {
+
     }
 
-    public int getSopaipillas() {
-        return sopaipillas;
+    public int getCobro() {
+        return cobro;
     }
 
-    public void setSopaipillas(int sopaipillas) {
-        this.sopaipillas = sopaipillas;
-    }
-
-    public int getDinero() {
-        return dinero;
-    }
-
-    public void setDinero(int dinero) {
-        this.dinero = dinero;
+    public void setCobro(int cobro) {
+        this.cobro = cobro;
     }
 
     public String getAderezo() {
@@ -43,16 +35,16 @@ public class VendedorSopapipillas {
         this.vuelto = vuelto;
     }
 
-    public int Cobrar (int cobro){
-        Scanner input = new Scanner(System.in);
-        do {
-            System.out.println("serían 200 pesitos");
-            cobro= input.nextInt();
+    public int RealizarVenta(){
 
-        } while(!PrevensionContraEstafa(cobro, 200));
+            System.out.println("serían 200 pesitos");
+            cobro= V_entrada(-1, 50000, 200);
+            Vuelto();
+            Aderezo();
 
         return cobro;
     }
+
     public void Aderezo (){
         Scanner input = new Scanner(System.in);
         System.out.println("desea agregar aderezo? 1. sí 0. no");
@@ -60,29 +52,23 @@ public class VendedorSopapipillas {
         if(respuesta==1){
             System.out.println("*le pone aderezo*");
         }else{
-            System.out.println("bueno ya");
+            System.out.println("bueno");
         }
     }
 
-    public void cantidadSopaipillas(){
-        int max= 400;
-        int min= 200;
-        setSopaipillas((int)Math.floor(Math.random()*(max-min+1)+min));
-        System.out.println("el nro de sopaipillas es: "+getSopaipillas());
-    }
+    public int Vuelto (){
 
-    public static boolean PrevensionContraEstafa(int num, int limiteInf) {
-        return (limiteInf <= num);
-    }
-
-    public int Vuelto (int vuelto){
+        if(cobro>200){
+            vuelto= cobro-200;
+            System.out.println("su vuelto es "+vuelto);
+        }
 
         return vuelto;
     }
 
     //validador de entrada
 
-    static int V_entrada(int n, int max, int min) {
+    public static int V_entrada(int n, int max, int min) {
 
         do {
             //Scanner ponerlo dentro del DO, y dentro de una funcion
@@ -103,6 +89,5 @@ public class VendedorSopapipillas {
         return n;
     }
     // para llamarlo: variable = V_entrada(variable,(numero maximo),(numero minimo));
-
 
 }
